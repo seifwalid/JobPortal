@@ -2,6 +2,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from '../../services/sessionService/session.service';
+import { DatabaseService } from '../../services/database.service/database.service';
 @Component({
   selector: 'app-welcome-page',
   standalone: true,
@@ -11,7 +12,8 @@ import { SessionService } from '../../services/sessionService/session.service';
 })
 export class WelcomePageComponent {
   private router = inject(Router);
-  private sessionService = inject(SessionService); 
+  private sessionService = inject(SessionService);
+  private databaseService = inject(DatabaseService);  
   
   seekerSignUp(){
     this.sessionService.save('jobRole', 'seeker');
@@ -24,5 +26,9 @@ export class WelcomePageComponent {
     
     this.router.navigate(['/login']);
    
+  }
+
+  testUser (){
+    this.databaseService.addUser();
   }
 }

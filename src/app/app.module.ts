@@ -13,6 +13,7 @@ import { JobSignupComponent } from './components/job-signup/job-signup.component
 const firebaseConfig = {
   apiKey: "AIzaSyC5LWMqaR60d1whsjudJ7l_JHobKMSDArM",
   authDomain: "job-portal-9e35f.firebaseapp.com",
+  databaseURL:"https://job-portal-9e35f-default-rtdb.europe-west1.firebasedatabase.app/",
   projectId: "job-portal-9e35f",
   storageBucket: "job-portal-9e35f.appspot.com",
   messagingSenderId: "55306700071",
@@ -29,11 +30,13 @@ const firebaseConfig = {
     BrowserModule,
     FormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireDatabaseModule
   ],
   providers: [
-    provideClientHydration()
-    
+    provideClientHydration(),
+    AngularFireDatabase,
+    AngularFireDatabaseModule
   ],
   bootstrap: [AppComponent]
 })

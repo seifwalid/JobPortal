@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from '../../services/sessionService/session.service';
 import { UserType } from '../../models/userType';
+import { AuthService } from '../../services/authService/auth.service';
+import { company } from '../../models/companyModel';
 @Component({
   selector: 'app-job-signup',
   templateUrl: './job-signup.component.html',
@@ -21,7 +23,7 @@ export class JobSignupComponent implements OnInit{
   companyPassword='';
   companyName='';
   companyEmail=''
-  constructor(private router: Router, private sessionService: SessionService) {
+  constructor(private router: Router, private sessionService: SessionService, private authService: AuthService) {
     console.log('JobSignupComponent created');
   }
 
@@ -41,9 +43,8 @@ export class JobSignupComponent implements OnInit{
 
 
   signupCompany() {
-    console.log('Email:', this.companyAddress);
-    console.log('Password:', this.companyEmail);
-    console.log('Confirm Password:', this.companyPassword);
-    console.log('Role:', this.role);
+   const comp = {companyName:this.companyName, companyEmail:this.companyEmail, companyPhone:this.companyPhone, companyAddress:this.companyAddress, companyPassword:this.companyPassword};
+    this.authService.registerRecruiter(comp);
+
   }
 }
